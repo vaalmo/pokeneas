@@ -1,4 +1,5 @@
 import pokeneas from "../data/pokeneas.js";
+import os from 'os';
 
 const getRandomPokenea = () => {
     const randomIndex = Math.floor(Math.random() * pokeneas.length);
@@ -13,6 +14,7 @@ export const getPokeneaInfo = async (req, res) => {
             name: randomPokenea.name,
             height: randomPokenea.height,
             ability: randomPokenea.ability,
+            containerId: os.hostname()
         }
         res.status(200).json(result)
     } catch (error) {
@@ -26,7 +28,8 @@ export const getPokeneaPhraseImage = async (req, res) => {
         const randomPokenea = getRandomPokenea();
         const result = {
             phrase: randomPokenea.phrase,
-            image: randomPokenea.image
+            image: randomPokenea.image,
+            containerId: os.hostname()
         }
         res.status(200).json(result)
     } catch (error) {
